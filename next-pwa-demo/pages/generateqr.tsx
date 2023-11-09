@@ -2,6 +2,10 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { ethers } from 'ethers';
 import CryptoJS from 'crypto-js';
+// import { QRCode } from 'qrcode.react';
+// import { QRCode } from 'qrcode.react';
+//import { QrReader } from 'react-qr-reader';
+
 
 
 
@@ -14,6 +18,8 @@ const GenerateQr = () => {
 
   const venue_id = '13333337'; // replace with your actual venue_id
   const secret = '4c%&U)af*'; // replace with your actual secret salt
+  
+
 
   useEffect(() => {
     const fetchBlockNumber = async () => {
@@ -47,18 +53,21 @@ const GenerateQr = () => {
         <p>Current Block Number: {blockNumber !== null ? blockNumber : 'Loading...'}</p>
         <p>Venue ID: {venue_id}</p>
         <p>Secret: {secret}</p>
-        <p>Concanted: </p>
+        <p>Concatinated: </p>
         <p>Hash of all three: {hash}</p>
+        {/* Display the QR code */}
+        
+        
       </div>
 
-      {/* Sign In and Sign Up buttons */}
-      <div className="space-y-4">
-        <Link href="/" passHref>
-          <button className="w-full text-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-            Back Home from QR Reader
-          </button>
-        </Link>
+      
+      <div>
+      
+       
       </div>
+     
+
+
 
       {/* Other content and return button if needed */}
     </div>
