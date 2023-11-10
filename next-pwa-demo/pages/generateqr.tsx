@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { ethers } from 'ethers';
 import CryptoJS from 'crypto-js';
 // required for hashing
+import QRCode from "qrcode";
 
 
 
@@ -13,16 +14,23 @@ import CryptoJS from 'crypto-js';
 
 
 
-
 const GenerateQr = () => {
   const [data, setData] = useState('No result');
   // Specify the type of blockNumber to be either number or null or string
   const { ethers, JsonRpcProvider } = require('ethers');
   const [blockNumber, setBlockNumber] = useState<number | null | string>(null);
   const [hash, setHash] = useState('');
+  const [toHash, setToHash] = useState('');
 
   const venue_id = '133333372'; // replace with your actual venue_id
   const secret = '4c%&U)af*'; // replace with your actual secret salt
+
+  const [url, setUrl] = useState("");
+  const [dataUrl, setDataUrl] = useState("");
+
+
+
+
 
 
 
@@ -35,8 +43,11 @@ const GenerateQr = () => {
 
         // Generate the hash when the block number is fetched
         const toHash = `${currentBlockNumber}-${venue_id}-${secret}`;
+        console.log("Value tobe hashed: ", toHash)
         const hashedValue = CryptoJS.SHA256(toHash).toString(CryptoJS.enc.Hex);
         setHash(hashedValue);
+        setToHash(toHash); // Store the concatenated string in the state
+
 
       } catch (error) {
         console.error('Error fetching block number:', error);
@@ -47,6 +58,16 @@ const GenerateQr = () => {
 
     fetchBlockNumber();
   }, [venue_id, secret]); // Dependencies array ensures useEffect is called when these values change
+
+
+  useEffect(() => {
+    if (hash) {
+      QRCode.toDataURL(hash, { width: 300 }, (err, url) => {
+        if (err) console.error(err);
+        setDataUrl(url);
+      });
+    }
+  }, [hash]);
 
 
   return (
@@ -64,16 +85,21 @@ const GenerateQr = () => {
             <p>Current Block Number: {blockNumber !== null ? blockNumber : 'Loading...'}</p>
             <p>Venue ID: {venue_id}</p>
             <p>Secret: {secret}</p>
-            <p>Concatinated: </p>
-            <p>Hash of all three:</p>
+            <p>Concatinated: {toHash}</p>
+            <p>Hash of all three: </p>
             <p className="text-xs"> {hash}</p>
             {/* Display the QR code */}
           </div>
 
           <div className="p-4 max-w-md mx-auto "> {/* External padding */}
-            <div className="p-4 max-w-md mx-auto bg-white rounded-xl shadow-md">
-              <p>QR Code</p>
-            </div>
+            {dataUrl && (
+              <div className="generated-view">
+                <img src={dataUrl} alt="Generated QR Code" />
+                <a href={dataUrl} download={`qr-code.png`} className="download-button">
+                  Download QR Code
+                </a>
+              </div>
+            )}
           </div>
 
 
