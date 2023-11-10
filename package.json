@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "next-qrcode": "^2.5.1",
+    "qrcode.react": "^3.1.0"
+  }
+}

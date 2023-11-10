@@ -2,6 +2,11 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { ethers } from 'ethers';
 import CryptoJS from 'crypto-js';
+// required for hashing
+
+
+
+
 // import { QRCode } from 'qrcode.react';
 // import { QRCode } from 'qrcode.react';
 //import { QrReader } from 'react-qr-reader';
@@ -16,9 +21,9 @@ const GenerateQr = () => {
   const [blockNumber, setBlockNumber] = useState<number | null | string>(null);
   const [hash, setHash] = useState('');
 
-  const venue_id = '13333337'; // replace with your actual venue_id
+  const venue_id = '133333372'; // replace with your actual venue_id
   const secret = '4c%&U)af*'; // replace with your actual secret salt
-  
+
 
 
   useEffect(() => {
@@ -45,32 +50,47 @@ const GenerateQr = () => {
 
 
   return (
-    <div className="container mx-auto flex flex-col items-center justify-center min-h-screen p-4">
-      {/* Content for your QR page */}
-      <div>
-        <h1>My QR Generator</h1>
-        {/* Display the current block number */}
-        <p>Current Block Number: {blockNumber !== null ? blockNumber : 'Loading...'}</p>
-        <p>Venue ID: {venue_id}</p>
-        <p>Secret: {secret}</p>
-        <p>Concatinated: </p>
-        <p>Hash of all three: {hash}</p>
-        {/* Display the QR code */}
-        
-        
+    <>
+      <div className="container mx-auto flex flex-col items-center justify-center min-h-screen p-4">
+        {/* Content for your QR page */}
+        <div>
+
+
+          <div className="p-4 max-w-md mx-auto bg-white rounded-xl shadow-md">
+            <h1 className="font-bold text-xl">Demo to create Geo-temporal Hashes</h1>
+            {/* More JSX code */}
+            <h1>My QR Generator</h1>
+            {/* Display the current block number */}
+            <p>Current Block Number: {blockNumber !== null ? blockNumber : 'Loading...'}</p>
+            <p>Venue ID: {venue_id}</p>
+            <p>Secret: {secret}</p>
+            <p>Concatinated: </p>
+            <p>Hash of all three:</p>
+            <p className="text-xs"> {hash}</p>
+            {/* Display the QR code */}
+          </div>
+
+          <div className="p-4 max-w-md mx-auto "> {/* External padding */}
+            <div className="p-4 max-w-md mx-auto bg-white rounded-xl shadow-md">
+              <p>QR Code</p>
+            </div>
+          </div>
+
+
+        </div>
+
+
+        <div>
+
+
+        </div>
+
+
+
+
+        {/* Other content and return button if needed */}
       </div>
-
-      
-      <div>
-      
-       
-      </div>
-     
-
-
-
-      {/* Other content and return button if needed */}
-    </div>
+    </>
   );
 };
 

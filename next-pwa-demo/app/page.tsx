@@ -32,31 +32,36 @@ const Home = () => {
           </h2>
 
           <div>
-          <ul>
-            <li>
-              <Link href="/">Home</Link>
-            </li>
-            <li>
-              <Link href="/signin">Sign In</Link>
-            </li>
-            <li>
-              <Link href="/signup">Sign Up</Link>
-            </li>
-          </ul>
+            <ul>
+              <li>
+                <Link href="/">Home</Link>
+              </li>
+              <li>
+                <Link href="/signin">Sign In</Link>
+              </li>
+              <li>
+                <Link href="/signup">Sign Up</Link>
+              </li>
+            </ul>
           </div>
+        </div>
+
+        <div className="p-4 max-w-md mx-auto bg-white rounded-xl shadow-md">
+          <h1 className="font-bold text-xl">Welcome to Tailwind with TypeScript!</h1>
+          {/* More JSX code */}
         </div>
 
         {/* Footer with buttons */}
         <footer className="fixed inset-x-0 bottom-0 bg-white border-t">
-        <div className="max-w-md mx-auto py-4 flex justify-around">
-          <Link href="/signin" className="w-1/2 text-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-l">
-            Sign In
-          </Link>
-          <Link href="/signup" className="w-1/2 text-center bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-r">
-            Sign Up
-          </Link>
-        </div>
-      </footer>
+          <div className="max-w-md mx-auto py-4 flex justify-around">
+            <Link href="/signin" className="w-1/2 text-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-l">
+              Sign In
+            </Link>
+            <Link href="/signup" className="w-1/2 text-center bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-r">
+              Sign Up
+            </Link>
+          </div>
+        </footer>
 
 
         {/* Footer Outside */}
